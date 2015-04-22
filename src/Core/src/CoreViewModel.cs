@@ -53,7 +53,10 @@ namespace Core.src
         private void onGameLaunch(object param)
         {
             Int32 Id = (Int32)param;
-            IGameApp current = GameList[(int)Id];
+            GameAppWrapper current = GameList[(int)Id];
+
+            current.P1 = model.P1;
+            current.P2 = model.P2;
 
             LaunchGame(this, current);
         }

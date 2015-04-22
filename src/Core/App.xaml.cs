@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Core.src;
+using Core.src.Utils;
 
 namespace Core
 {
@@ -29,8 +30,16 @@ namespace Core
             _viewmodel = new CoreViewModel();
             _window = new MainWindow();
 
+            _viewmodel.LaunchGame += LaunchNewGame;
+
             _window.DataContext = _viewmodel;
             _window.Show();
+        }
+
+        private void LaunchNewGame(object sender, src.InterFaces.IGameApp e)
+        {
+            GameAppWrapper wrap = (GameAppWrapper)e;
+            wrap.Initialize();
         }
     }
 }
