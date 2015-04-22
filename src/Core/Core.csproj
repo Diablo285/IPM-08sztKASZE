@@ -53,6 +53,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="src\Utils\BaseViewModel.cs" />
+    <Compile Include="src\Utils\DelegateCommand.cs" />
+    <Compile Include="src\CoreModel.cs" />
     <Compile Include="src\InterFaces\IArtificalIntelligence.cs" />
     <Compile Include="src\InterFaces\ICore.cs" />
     <Compile Include="src\InterFaces\IGameApp.cs" />
