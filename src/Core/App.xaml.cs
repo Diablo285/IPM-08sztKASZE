@@ -18,6 +18,8 @@ namespace Core
         private MainWindow _window;
         private CoreViewModel _viewmodel;
 
+        private GameAppWrapper _currentGame;
+
         public App() 
         {
  
@@ -39,7 +41,25 @@ namespace Core
         private void LaunchNewGame(object sender, src.InterFaces.IGameApp e)
         {
             GameAppWrapper wrap = (GameAppWrapper)e;
-            wrap.Initialize();
+            if (this._currentGame == null)
+            {
+                _window.Close();
+                this._currentGame = wrap;
+                this._currentGame.GameOver += GameOver;
+                wrap.Initialize();
+            }
+            else
+            {
+                throw new InvalidOperationException("A game is still running!");
+            }
+        }
+
+        private void GameOver(object sender, EventArgs e)
+        {
+            this._currentGame.GameOver -= GameOver;
+            this._currentGame = null;
+
+            _window.Show();
         }
     }
 }

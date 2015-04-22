@@ -35,7 +35,14 @@ namespace Core.src.Utils
         public GameAppWrapper(IGameApp original, Int32 Id)
         {
             this.original = original;
+
+            this.original.GameOver += original_GameOver;
             this.Id = Id;
+        }
+
+        void original_GameOver(object sender, EventArgs e)
+        {
+            this.GameOver(this, e);
         }
 
         public void Initialize(Structures.Player p1, Structures.Player p2)
@@ -47,5 +54,8 @@ namespace Core.src.Utils
         {
             this.original.Initialize(this.P1, this.P2);
         }
+
+
+        public event EventHandler GameOver;
     }
 }

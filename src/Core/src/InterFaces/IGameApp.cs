@@ -10,5 +10,7 @@ namespace Core.src.InterFaces
     interface IGameApp
     {
         void Initialize(Player p1, Player p2);
+
+        public event EventHandler GameOver;
     }
 }
