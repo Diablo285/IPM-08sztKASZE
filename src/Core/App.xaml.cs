@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using Core.src;
 using Core.src.Utils;
+using DomainModel.Contracts;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
+using DomainModel;
+
 
 namespace Core
 {
@@ -20,6 +25,8 @@ namespace Core
 
         private GameAppWrapper _currentGame;
 
+        private IScoreStore _store;
+
         public App() 
         {
  
@@ -28,6 +35,10 @@ namespace Core
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            using (var container = new UnityContainer().LoadConfiguration())
+            {
+                this._store = container.Resolve<IScoreStore>();
+            }
 
             _viewmodel = new CoreViewModel();
             _window = new MainWindow();
@@ -57,6 +68,17 @@ namespace Core
         private void GameOver(object sender, EventArgs e)
         {
             this._currentGame.GameOver -= GameOver;
+
+            LeaderboardEntry board = new LeaderboardEntry{
+                UserName = "test",
+                GameType = GameTypes.TicTacToe,
+                Date = DateTime.Now,
+                GameSessionId = "session1",
+                Score = (int)this._currentGame.P1.Score
+            };
+
+            _store.AddLeaderboardEntryAsync(board);
+
             this._currentGame = null;
 
             _window.Show();
