@@ -13,7 +13,7 @@ using System.Collections.ObjectModel;
 
 namespace Core.src
 {
-    class CoreController : BaseViewModel
+    class CoreViewModel : BaseViewModel
     {
         protected CoreModel model;
 
@@ -39,7 +39,7 @@ namespace Core.src
             }
         }
 
-        public CoreController()
+        public CoreViewModel()
         {
             model = new CoreModel();
 
