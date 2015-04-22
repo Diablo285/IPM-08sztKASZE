@@ -10,37 +10,20 @@ namespace Core.src.Structures
     {
         public Boolean isHuman
         {
-            get
-            {
-                return is_human;
-            }
-            set
-            {
-                is_human = value;
-            }
+            get;
+            set;
         }
-
-        protected Boolean is_human;
 
         public Int64 Score
         {
-            get
-            {
-                return score;
-            }
-            set
-            {
-                score = value;
-            }
+            get;
+            set;
         }
-
-        protected Int64 score;
-    
         
         public Player(Boolean is_human)
         {
-            score = 0;
-            this.is_human = is_human;
+            Score = 0;
+            isHuman = is_human;
         }
     }
 

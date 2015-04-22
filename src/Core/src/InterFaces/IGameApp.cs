@@ -11,6 +11,6 @@ namespace Core.src.InterFaces
     {
         void Initialize(Player p1, Player p2);
 
-        public event EventHandler GameOver;
+        event EventHandler GameOver;
     }
 }
