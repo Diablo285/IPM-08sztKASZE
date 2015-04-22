@@ -15,7 +15,7 @@ namespace Core.src.Utils
         public DelegateCommand(Action<Object> exec) : this(null, exec) { }
         public DelegateCommand(Func<Object,Boolean> canExecute,Action<Object> exec)
         {
-            if (_execute == null)
+            if (exec == null)
                 throw new ArgumentNullException("No executeable object");
 
             _execute = exec;

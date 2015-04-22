@@ -18,7 +18,7 @@ namespace Core.src
         {
             get
             {
-                return Games;
+                return games;
             }
         }
 
