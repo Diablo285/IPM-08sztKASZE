@@ -17,13 +17,15 @@ namespace Core.src
     {
         protected CoreModel model;
 
+        public event EventHandler<IGameApp> LaunchGame;
+
         public DelegateCommand LaunchGameCommand
         {
             get;
             protected set;
         }
 
-        public ObservableCollection<IGameApp> GameList
+        public ObservableCollection<GameAppWrapper> GameList
         {
             get
             {
@@ -52,6 +54,8 @@ namespace Core.src
         {
             Int32 Id = (Int32)param;
             IGameApp current = GameList[(int)Id];
+
+            LaunchGame(this, current);
         }
     }
 }

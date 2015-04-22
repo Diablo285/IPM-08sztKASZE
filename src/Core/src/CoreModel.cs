@@ -6,20 +6,29 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 
 using Core.src.InterFaces;
+using Core.src.Utils;
+using Core.src.Structures;
 
 namespace Core.src
 {
     class CoreModel : ICore
     {
         protected Int32 registeredGames;
-        protected ObservableCollection<IGameApp> games;
-        
-        public ObservableCollection<IGameApp> Games
+        public ObservableCollection<GameAppWrapper> Games
         {
-            get
-            {
-                return games;
-            }
+            get;
+            protected set;
+        }
+
+        public Player P1
+        {
+            get;
+            set;
+        }
+        public Player P2
+        {
+            get;
+            set;
         }
 
         public Int32 GameNum
@@ -33,13 +42,14 @@ namespace Core.src
         public CoreModel()
         {
             registeredGames = 0;
-            games = new ObservableCollection<IGameApp>();
+            Games = new ObservableCollection<GameAppWrapper>();
         }
 
         public void register(IGameApp game)
         {
+            GameAppWrapper newGameWrapper = new GameAppWrapper(game, registeredGames);
             ++registeredGames;
-            games.Add(game);
+            Games.Add(newGameWrapper);
         }
     }
 }

@@ -63,6 +63,7 @@
     <Compile Include="src\Structures\Computer.cs" />
     <Compile Include="src\Structures\Human.cs" />
     <Compile Include="src\Structures\Player.cs" />
+    <Compile Include="src\Utils\GameAppWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
